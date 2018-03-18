@@ -1,0 +1,43 @@
+<div class="container-fluid main-box">
+  <h3>User Form</h3>
+  <form [formGroup]="userForm" (ngSubmit)="submit()" novalidate>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Name</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ex: John" formControlName="name">
+      <div class="alert alert-warning" [hidden]="name.valid || name.untouched || name.prestine">The minimum characters required is 5</div>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">email</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ex: John12@gmail.com" formControlName="email">
+      <div class="alert alert-warning" [hidden]="email.valid || email.untouched || email.prestine">Enter a valid email</div>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Phone Number</label>
+      <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Ex: 8888888888" formControlName="phone">
+      <div class="alert alert-warning" [hidden]="phone.valid || phone.untouched || phone.prestine">Enter a valid phone Number</div>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">State</label>
+      <select class="form-control" id="exampleFormControlSelect1" formcontrolName="state" formControlName="state">
+        <option  disabled value="" selected>-- select state --</option>
+        <option *ngFor="let state of states">{{state}}</option>
+      <div class = "alert alert-warning" [hidden]="state.valid || state.untouched || state.prestine">This field is required</div>
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Date Of Birth</label>
+      <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="date">
+      <div class="alert alert-warning" [hidden]="date.valid || date.untouched || date.prestine">Enter a valid date of birth</div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid" (click)="submit">Submit</button>
+    <div *ngIf="submitLoader">
+      <i class="fa fa-refresh fa-spin fa-1x fa-fw"></i>
+    </div>
+  </form>
+</div>
